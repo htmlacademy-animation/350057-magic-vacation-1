@@ -5,17 +5,48 @@
   min-height: 100vh;
   z-index: 1;
   overflow: hidden;
+  width: 100%;
 
   &--hidden {
-    display: none;
+    width: 0;
+    height: 0;
+    min-height: 0;
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     min-height: calc(var(--vh, 1vh) * 100);
+
+    &--hidden {
+      width: 0;
+      min-height: 0;
+    }
   }
 
   @media (max-width: $tablet - 1) and (orientation: landscape) {
     height: 100vh;
+    
+    &--hidden {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  @media (max-width: $mobile - 1) and (orientation: portrait) {
+    min-height: calc(var(--vh, 1vh) * 100);
+
+    &--hidden {
+      width: 0;
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: $mobile) and (orientation: landscape) {
+    height: 100vh;
+
+    &--hidden {
+      width: 0;
+      height: 0;
+    }
   }
 }
 
@@ -288,6 +319,15 @@
   }
 }
 
+.screen--intro {
+  &.active {
+    .intro__message {
+      opacity: 1;
+      transform: translateY(-20px);
+    }
+  }
+}
+
 .screen--story {
   background-color: $c-dark;
   background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
@@ -298,6 +338,24 @@
   @media (orientation: portrait) {
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
+  }
+
+  &.active {
+    .swiper-slide-active {
+      .slider__item-text {
+        opacity: 1;
+        transform: translateX(-20px);
+        transition-delay: 0.2s;
+      }
+    }
+
+    .swiper-slide-next {
+      .slider__item-text {
+        opacity: 1;
+        transform: translateX(-20px);
+        transition-delay: 0.3s;
+      }
+    }
   }
 }
 
@@ -332,6 +390,28 @@
 
     @media (max-width: $tablet) and (orientation: portrait) {
       opacity: 0;
+    }
+  }
+
+  &.active {
+    .form__field {
+      width: calc(100% - 21rem);
+
+      @media (min-width: $stop-scaling) {
+        width: calc(100% - 210px);
+      }
+
+      @media (orientation: portrait) {
+        width: calc(100% - 5rem);
+      }
+
+      @media (max-width: $tablet) and (orientation: landscape) {
+        width: calc(100% - 9rem);
+      }
+
+      @media (max-width: $mobile) and (orientation: landscape) {
+        width: calc(100% - 5rem);
+      }
     }
   }
 }
